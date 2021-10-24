@@ -1,12 +1,15 @@
 <script>
-  export let productsProp;
+  import { products } from "../../store/products";
   import Product from "./nested/Product.svelte";
 </script>
 
 <section class="products">
   <h2 class="section-title">Our Products</h2>
   <div class="products-centre">
-    {#each productsProp as currentProduct}
+    <!-- {#each storeProducts as currentProduct}
+      <Product productObj={currentProduct} />
+    {/each} -->
+    {#each $products as currentProduct}
       <Product productObj={currentProduct} />
     {/each}
   </div>

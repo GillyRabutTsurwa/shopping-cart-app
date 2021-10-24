@@ -1,11 +1,20 @@
 <script>
-  export let cartStatusProp;
+  import { get } from "svelte/store";
+  import { cartStatus, toggleCartStatus } from "../../store/cart";
   import CartItem from "./nested/CartItem.svelte";
+
+  let isCartOpen;
+
+  cartStatus.subscribe((data) => {
+    console.log(get(cartStatus));
+    // console.log(get(cartStatus) === data); true. interesting
+    isCartOpen = data; //NOTE: je peux aussi faire isCartOpen = get(cartStatus);
+  });
 </script>
 
 <div class="cart-overlay">
-  <div class="cart" class:showCart={cartStatusProp} class:transparentBcg={cartStatusProp}>
-    <span class="close-cart" on:click>
+  <div class="cart" class:showCart={isCartOpen} class:transparentBcg={isCartOpen}>
+    <span class="close-cart" on:click={toggleCartStatus}>
       <i class="fas fa-window-close" />
     </span>
     <h2>Your cart</h2>

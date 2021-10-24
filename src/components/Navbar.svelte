@@ -1,4 +1,12 @@
 <script>
+  import { toggleCartStatus } from "../../store/cart"; // NOTE: change name later
+
+  // let isCartOpen;
+
+  // cartStatus.subscribe((data) => {
+  //   isCartOpen = data;
+  //   console.log(get(cartStatus));
+  // });
 </script>
 
 <nav class="navbar">
@@ -7,8 +15,7 @@
       <i class="fas fa-bars" />
     </span>
     <img src="img/logo.svg" alt="Store Logo" />
-    <!-- IMPORTANT: on click event to push to parent -->
-    <button on:click class="cart-btn">
+    <button on:click={toggleCartStatus} class="cart-btn">
       <span class="nav-icon"><i class="fas fa-cart-plus" /></span>
       <div class="cart-items">0</div>
     </button>
