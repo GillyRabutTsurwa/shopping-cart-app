@@ -6,9 +6,6 @@
 <section class="products">
   <h2 class="section-title">Our Products</h2>
   <div class="products-centre">
-    <!-- {#each storeProducts as currentProduct}
-      <Product productObj={currentProduct} />
-    {/each} -->
     {#each $products as currentProduct}
       <Product productObj={currentProduct} />
     {/each}
@@ -20,7 +17,7 @@
     padding: 4rem 0;
   }
 
-  .section-title h2 {
+  .section-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 5rem;

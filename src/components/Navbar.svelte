@@ -1,5 +1,6 @@
 <script>
   import { toggleCartStatus } from "../../store/cart"; // NOTE: change name later
+  import { productsInCart } from "../../store/products";
 
   // let isCartOpen;
 
@@ -7,6 +8,8 @@
   //   isCartOpen = data;
   //   console.log(get(cartStatus));
   // });
+
+  $: itemsInCart = $productsInCart.length;
 </script>
 
 <nav class="navbar">
@@ -17,7 +20,7 @@
     <img src="img/logo.svg" alt="Store Logo" />
     <button on:click={toggleCartStatus} class="cart-btn">
       <span class="nav-icon"><i class="fas fa-cart-plus" /></span>
-      <div class="cart-items">0</div>
+      <div class="cart-items">{itemsInCart}</div>
     </button>
   </div>
 </nav>

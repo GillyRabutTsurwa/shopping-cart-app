@@ -1,14 +1,57 @@
+<script>
+  import { onMount } from "svelte";
+  import { productsInCart } from "../../../store/products";
+  export let cartItemProp; // an object prop accepted from the parent, <Cart/>
+
+  // TESTING:
+  function getOccurrence(array, value) {
+    return array.filter((currentObj) => currentObj === value).length;
+  }
+
+  function incrementItem() {
+    productsInCart.update((currentValue) => {
+      return [...currentValue, cartItemProp]; // wow it worked.très bien
+    });
+  }
+
+  function decrementItem() {
+    console.log("decrementItem function executed");
+    // thanks to this stackoverflow link:
+    // https://stackoverflow.com/questions/53534721/find-and-remove-first-matching-element-in-an-array-of-javascript-objects/53534899
+    productsInCart.update((currentValue) => {
+      const index = currentValue.indexOf(cartItemProp);
+      if (index > -1) {
+        currentValue.splice(index, 1);
+      }
+      return currentValue;
+    });
+  }
+
+  // remove all instances of a singular item, so if there's 10 "queen beds" this function will remove all queen beds
+  function removeItem() {
+    productsInCart.update((currentValue) => {
+      return currentValue.filter((arrayValue) => arrayValue !== cartItemProp);
+    });
+  }
+
+  onMount(() => {
+    cartItemProp.sys.id = Math.random(); // replacing ids from the json file with my own ids. same items not sure if i want it this way or the way i have it in Product.svelte where every single item in the cart has unnique id
+    console.log(cartItemProp);
+  });
+</script>
+
 <div class="cart-item">
-  <img src="img/product-1.jpeg" alt="product 1" />
+  <img src={cartItemProp.fields.image.src} alt="product 1" />
   <div>
-    <h4>Queen Bed</h4>
-    <h5>$9.00</h5>
-    <span class="remove-item">Remove</span>
+    <h4>{cartItemProp.fields.title}</h4>
+    <h5>{cartItemProp.fields.price}</h5>
+    <span on:click={removeItem} class="remove-item">Remove</span>
   </div>
   <div>
-    <i class="fas fa-chevron-up" />
-    <p class="item-amount">1</p>
-    <i class="fas fa-chevron-down" />
+    <i on:click={incrementItem} class="fas fa-chevron-up" />
+    <p class="item-amount">{getOccurrence($productsInCart, cartItemProp)}</p>
+    <!-- <p class="item-amount">{occurences[cartItemProp]} FAIL</p> -->
+    <i on:click={decrementItem} class="fas fa-chevron-down" />
   </div>
 </div>
 

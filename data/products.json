@@ -8,11 +8,7 @@
         "title": "queen panel bed",
         "price": 10.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-1.jpeg"
-            }
-          }
+          "src": "./img/product-1.jpeg"
         }
       }
     },
@@ -24,11 +20,7 @@
         "title": "king panel bed",
         "price": 12.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-2.jpeg"
-            }
-          }
+          "src": "./img/product-2.jpeg"
         }
       }
     },
@@ -40,11 +32,7 @@
         "title": "single panel bed",
         "price": 12.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-3.jpeg"
-            }
-          }
+          "src": "./img/product-3.jpeg"
         }
       }
     },
@@ -56,11 +44,7 @@
         "title": "twin panel bed",
         "price": 22.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-4.jpeg"
-            }
-          }
+          "src": "./img/product-4.jpeg"
         }
       }
     },
@@ -72,11 +56,7 @@
         "title": "fridge",
         "price": 88.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-5.jpeg"
-            }
-          }
+          "src": "./img/product-5.jpeg"
         }
       }
     },
@@ -88,11 +68,7 @@
         "title": "dresser",
         "price": 32.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-6.jpeg"
-            }
-          }
+          "src": "./img/product-6.jpeg"
         }
       }
     },
@@ -104,11 +80,7 @@
         "title": "couch",
         "price": 45.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-7.jpeg"
-            }
-          }
+          "src": "./img/product-7.jpeg"
         }
       }
     },
@@ -120,11 +92,7 @@
         "title": "table",
         "price": 33.99,
         "image": {
-          "fields": {
-            "file": {
-              "url": "./img/product-8.jpeg"
-            }
-          }
+          "src": "./img/product-8.jpeg"
         }
       }
     }

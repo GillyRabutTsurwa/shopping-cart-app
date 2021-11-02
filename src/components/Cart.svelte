@@ -1,15 +1,23 @@
 <script>
   import { get } from "svelte/store";
   import { cartStatus, toggleCartStatus } from "../../store/cart";
+  import { productsInCart } from "../../store/products";
   import CartItem from "./nested/CartItem.svelte";
 
   let isCartOpen;
+  // TESTINGPASS:
+  // on fait ceci car on veut que un article qui est selectioné plusieurs fois s'affiche juste une fois sur la carte
+  $: productsInCartUI = [...new Set($productsInCart)];
 
   cartStatus.subscribe((data) => {
     console.log(get(cartStatus));
     // console.log(get(cartStatus) === data); true. interesting
     isCartOpen = data; //NOTE: je peux aussi faire isCartOpen = get(cartStatus);
   });
+
+  const clearCart = () => {
+    productsInCart.set([]);
+  };
 </script>
 
 <div class="cart-overlay">
@@ -19,11 +27,15 @@
     </span>
     <h2>Your cart</h2>
     <div class="cart-content">
-      <CartItem />
+      {#each productsInCartUI as currentProduct}
+        <CartItem cartItemProp={currentProduct} />
+      {:else}
+        <h5 style="text-align:center;">Your Cart is Empty</h5>
+      {/each}
     </div>
     <div class="cart-footer">
       <h3>Your total : $ <span class="cart-total">0</span></h3>
-      <button class="clear-cart banner-btn">Clear cart</button>
+      <button on:click={clearCart} class="clear-cart banner-btn">Clear cart</button>
     </div>
   </div>
 </div>

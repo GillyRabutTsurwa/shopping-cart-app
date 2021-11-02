@@ -1,11 +1,20 @@
 <script>
+  import { products, productsInCart } from "../../../store/products";
   export let productObj;
+  const addItemToCart = () => {
+    productsInCart.update((currentProducts) => {
+      productObj.sys.id = Math.random(); // replacing ids from the json file with my own ids
+      // console.log(productObj); // useful log mais je vais le decommenter pour le momment
+      return [productObj, ...currentProducts];
+    });
+    // console.log($productsInCart); // le même pour celui-ci
+  };
 </script>
 
 <article class="product">
   <div class="img-container">
-    <img src={productObj.fields.image.fields.file.url} class="product-image" alt="product 1" />
-    <button class="bag-btn" data-id="1">
+    <img src={productObj.fields.image.src} class="product-image" alt="product 1" />
+    <button on:click={addItemToCart} class="bag-btn" data-id="1">
       <i class="fas fa-shopping-cart" aria-hidden="true" />
       Add To Bag
     </button>

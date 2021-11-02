@@ -17,5 +17,12 @@ const getProducts = async () => {
 getProducts();
 
 export const products = writable([]); // lorsque je le declare comme const pour la deposer d'ailleurs
-
 console.log(products);
+
+export const productsInCart = writable([]);
+
+/**
+ * retrouver les données d'un API pour utiliser chez le store se fait un peu differement.
+ * mais j'y suis arrivé grâce à ce lien-ci:
+ * https://stackoverflow.com/questions/64799008/make-ajax-request-from-store
+ */
