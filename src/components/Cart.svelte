@@ -1,4 +1,6 @@
 <script>
+  // TESTING
+	import { afterUpdate } from 'svelte';
   import { get } from "svelte/store";
   import { cartStatus, toggleCartStatus } from "../../store/cart";
   import { productsInCart } from "../../store/products";
@@ -9,6 +11,10 @@
   // on fait ceci car on veut que un article qui est selectioné plusieurs fois s'affiche juste une fois sur la carte
   $: productsInCartUI = [...new Set($productsInCart)];
 
+  $: totalPricesArr = $productsInCart.map((currentProduct) => currentProduct.fields.price);
+  $: sum = totalPricesArr.reduce((accumulator, currentValue) => accumulator + currentValue , 0).toFixed(2);
+
+
   cartStatus.subscribe((data) => {
     console.log(get(cartStatus));
     // console.log(get(cartStatus) === data); true. interesting
@@ -16,8 +22,14 @@
   });
 
   const clearCart = () => {
-    productsInCart.set([]);
+    if ($productsInCart !== 0) productsInCart.set([]);
+    console.log("Touts les articles dans la carte supprimés")
   };
+
+  afterUpdate(() => {
+    console.log(productsInCart);
+    console.log($productsInCart);
+  })
 </script>
 
 <div class="cart-overlay">
@@ -34,7 +46,7 @@
       {/each}
     </div>
     <div class="cart-footer">
-      <h3>Your total : $ <span class="cart-total">0</span></h3>
+      <h3>Your total : $ <span class="cart-total">{sum}</span></h3>
       <button on:click={clearCart} class="clear-cart banner-btn">Clear cart</button>
     </div>
   </div>
